@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
 
@@ -15,8 +16,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      working-directory: scripts/docker/hub
       run: |
-        docker build . -t 3.3.6 \
-          --build-arg VCS_REF=$GITHUB_SHA \
-          --build-arg BUILD_DATE="$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+        OPENETHEREUM_IMAGE_REPO=rubo/openethereum \
+        OPENETHEREUM_BUILDER_IMAGE_TAG=build-latest \
+        OPENETHEREUM_RUNNER_IMAGE_TAG=centos-openethereum-experimental \
+        ./scripts/docker/centos/build.sh
