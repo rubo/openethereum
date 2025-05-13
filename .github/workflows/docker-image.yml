@@ -16,5 +16,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      working-directory: scripts/docker/alpine
-      run: docker build . -t oe
+      run: docker build . -f scripts/docker/alpine/Dockerfile -t oe
