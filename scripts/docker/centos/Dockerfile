@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM quay.io/centos/centos:stream8
 
 RUN mkdir -p /opt/openethereum/data && \
     chmod g+rwX /opt/openethereum/data && \
