@@ -16,8 +16,5 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: |
-        OPENETHEREUM_IMAGE_REPO=rubo/openethereum \
-        OPENETHEREUM_BUILDER_IMAGE_TAG=build-latest \
-        OPENETHEREUM_RUNNER_IMAGE_TAG=centos-openethereum-experimental \
-        ./scripts/docker/centos/build.sh
+      working-directory: scripts/docker/alpine
+      run: docker build . -t oe
